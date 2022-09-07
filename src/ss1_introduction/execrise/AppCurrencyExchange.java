@@ -1,4 +1,4 @@
-package ss1.execrise;
+package ss1_introduction.execrise;
 
 import java.util.Scanner;
 
