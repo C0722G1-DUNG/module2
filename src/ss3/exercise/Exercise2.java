@@ -13,8 +13,8 @@ public class Exercise2 {
         int number = Integer.parseInt(scanner.nextLine());
         System.out.println("vị trí cần thêm phần tử"+index);
         System.out.println("thêm phần tử"+number);
-        for (int i =1; i <arr1.length; i++) {
-            if (index==arr1[i]){
+        for (int i =0; i <arr1.length; i++) {
+            if (index==i){
                 for (int j = arr1.length-1; j >index; j--) {
                     arr1[j]=arr1[j-1];
                 }
