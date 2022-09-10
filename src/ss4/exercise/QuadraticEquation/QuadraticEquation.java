@@ -1,7 +1,9 @@
 package ss4.exercise.QuadraticEquation;
 
 public class QuadraticEquation {
-    double a, b, c;
+    double a;
+    double b;
+    double c;
 
     QuadraticEquation() {
 
@@ -30,11 +32,11 @@ public class QuadraticEquation {
     }
 
     public double getRood1() {
-        return (-b + Math.pow(Math.pow(b, 2) - (4 * a * c), 0.5)) / 2 * a;
+        return (-b + Math.pow(getDisscriminant(), 0.5)) / 2 * a;
     }
 
     public double getRood2() {
-        return (-b - Math.pow(Math.pow(b, 2) - (4 * a * c), 0.5)) / 2 * a;
+        return (-b - Math.pow(getDisscriminant(), 0.5)) / 2 * a;
     }
 
     @Override
