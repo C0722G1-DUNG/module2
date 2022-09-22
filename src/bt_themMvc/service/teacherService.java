@@ -48,6 +48,16 @@ boolean remetrue = false ;
         }
     }
 
+    @Override
+    public void searchTeacher() {
+        int id = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i <teacherList.size(); i++) {
+            if (teacherList.get(i).getId()==id){
+                System.out.println(teacherList.get(i));
+            }
+        }
+    }
+
     public Teacher infoTeacher(){
         System.out.println("nhập mã giảng viên");
         int Id = Integer.parseInt(scanner.nextLine());

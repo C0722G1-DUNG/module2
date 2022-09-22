@@ -42,7 +42,7 @@ public class Mylist<E> {
     }
 
     public void add(E element, int index) {
-        if (index > elements.length) {
+        if (index > elements.length|| index<0) {
             throw new IllegalMonitorStateException("index" + index);
         } else if (elements.length == size) {
             this.ensureCapacity(5);
