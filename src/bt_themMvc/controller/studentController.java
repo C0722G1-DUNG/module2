@@ -19,7 +19,8 @@ public class studentController {
             System.out.println("2 hiển thị danh sách hs mới");
             System.out.println("3 xóa danh sách hs mới");
             System.out.println("4 tìm kiếm  hs theo ID");
-            System.out.println("5 thoát");
+            System.out.println("5 sắp xếp danh sách  hs theo tên , nếu tên giống thì so sánh theo Id");
+            System.out.println("6 thoát");
             int choise = Integer.parseInt(scanner.nextLine());
 
             switch (choise) {
@@ -35,7 +36,10 @@ public class studentController {
                 case 4:
                     iStudentService.searchStudent();
                     break;
-                case 5:
+                case 5 :
+                    iStudentService.sortStudent();
+                    break;
+                    case 6:
                     System.exit(0);
                     break;
             }

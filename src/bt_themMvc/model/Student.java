@@ -1,6 +1,6 @@
 package bt_themMvc.model;
 
-public class Student extends person {
+public class Student extends person implements Comparable<Student> {
     private String clas;
     private double score;
 
@@ -12,6 +12,7 @@ public class Student extends person {
 
     public Student() {
     }
+
     public String getClas() {
         return clas;
     }
@@ -33,7 +34,28 @@ public class Student extends person {
         return "student{" +
                 "clas='" + clas + '\'' +
                 ", score=" + score +
-                 super.toString()+
+                super.toString() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        if (this.getLasName().compareTo(this.getLasName()) != 0) {
+            return this.getLasName().compareTo(o.getLasName());
+        } else {
+            return this.getId()-o.getId();
+        }
+
+
+    }
+
+    public String getLasName() {
+        String s = super.getName().trim();
+        if (s.indexOf(" ") >= 0) {
+            int vt = s.lastIndexOf(" ");
+            return s.substring(vt + 1);
+        } else {
+            return s;
+        }
     }
 }

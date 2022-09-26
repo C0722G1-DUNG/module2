@@ -3,6 +3,7 @@ package bt_themMvc.service;
 import bt_themMvc.model.Student;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,6 +64,30 @@ public class studentService implements IStudentService {
         }
 
         }
+    //                    Collections.swap(studentList,j,j+1);
+    @Override
+    public void sortStudent() {
+        for (int i = 0; i <studentList.size()-1; i++) {
+            for (int j = 0; j <studentList.size()-1-i; j++) {
+                Student student1 = studentList.get(j);
+                Student student2 = studentList.get(j + 1);
+                Student temp = studentList.get(j);
+                int compare = student1.getLasName().compareTo(student2.getLasName());
+                if (compare > 0) {
+                    studentList.set(j, studentList.get(j + 1));
+                    studentList.set(j + 1, temp);
+                }
+                 if (compare==0){
+                    if (student1.getId()-student2.getId()>0){
+                        studentList.set(j, studentList.get(j + 1));
+                        studentList.set(j + 1, temp);
+                    }
+                }
+
+            }
+        }
+        System.out.println("sắp xếp thành công");
+    }
 
 
     public Student inforStudent() {
@@ -89,10 +114,14 @@ public class studentService implements IStudentService {
         Student student = new Student(Id, name, birth, gender, clas, score);
         return student;
     }
+
     public static void temp (){
-     studentList.add(new Student(1,"dũng",6,true,"c06",8));
-     studentList.add(new Student(2,"Ba",6,true,"c07",9));
-     studentList.add(new Student(3,"bốn",6,false,"c08",10));
+     studentList.add(new Student(4,"người thích học",6,true,"c06",8));
+     studentList.add(new Student(2,"kẻ si tình",6,true,"c07",9));
+     studentList.add(new Student(7,"chuyện tay ba",6,false,"c08",10));
+     studentList.add(new Student(3," Nnguyễn văn an",6,false,"c08",10));
+     studentList.add(new Student(1,"  an",6,false,"c08",10));
 
     }
+
 }
