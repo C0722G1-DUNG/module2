@@ -1,6 +1,8 @@
 package bt_themMvc.service;
 
 import bt_themMvc.model.Student;
+import bt_themMvc.until.CheckScore;
+import bt_themMvc.until.StudentException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -109,8 +111,17 @@ public class studentService implements IStudentService {
         }
         System.out.println("mời bạn nhập tên lớp");
         String clas = scanner.nextLine();
-        System.out.println("mời bạn nhập điểm số");
-        double score = Double.parseDouble(scanner.nextLine());
+       double score ;
+        while (true){
+           try {
+               System.out.println("mời bạn nhập điểm số");
+                score = Double.parseDouble(scanner.nextLine());
+                CheckScore.falseScore(score);
+                break;
+           } catch (StudentException|NumberFormatException e) {
+               System.out.println(e.getMessage());
+           }
+        }
         Student student = new Student(Id, name, birth, gender, clas, score);
         return student;
     }
@@ -123,5 +134,4 @@ public class studentService implements IStudentService {
      studentList.add(new Student(1,"  an",6,false,"c08",10));
 
     }
-
 }
