@@ -2,10 +2,12 @@ package bt_themMvc.view;
 
 import bt_themMvc.controller.studentController;
 import bt_themMvc.controller.teacherController;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {

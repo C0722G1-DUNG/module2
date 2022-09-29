@@ -2,6 +2,8 @@ package bt_themMvc.service;
 
 import bt_themMvc.model.Student;
 import bt_themMvc.model.Teacher;
+import bt_themMvc.until.teacher.CheckName;
+import bt_themMvc.until.teacher.TeacherException;
 import ss10.execrise.TestMylist;
 
 import java.util.ArrayList;
@@ -58,11 +60,44 @@ boolean remetrue = false ;
         }
     }
 
+    @Override
+    public void sortTeacher() {
+
+        for (int i = 0; i <teacherList.size()-1; i++) {
+            for (int j = 0; j < teacherList.size()-1-i; j++) {
+                Teacher tamp =teacherList.get(j);
+                Teacher teacher1 = teacherList.get(j);
+                Teacher teacher2 = teacherList.get(j+1);
+               int compare = teacher1.getLasNameTeacher().compareTo(teacher2.getLasNameTeacher());
+               if (compare>0){
+                   teacherList.set(j,teacherList.get(j+1));
+                   teacherList.set(j+1,tamp);
+               }
+               if (compare==0){
+                   if (teacher1.getId()-teacher2.getId() >0){
+                       teacherList.set(j,teacherList.get(j+1));
+                       teacherList.set(j+1,tamp);
+                   }
+               }
+            }
+
+        }
+    }
+
     public Teacher infoTeacher(){
         System.out.println("nhập mã giảng viên");
         int Id = Integer.parseInt(scanner.nextLine());
-        System.out.println("nhập tên giảng viên");
-        String name = scanner.nextLine();
+        String name;
+        while (true){
+            try {
+                System.out.println("nhập tên giảng viên");
+                 name = scanner.nextLine();
+                CheckName.checkName(name);
+                break;
+            }catch (TeacherException e){
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println("nhập ngày sinh giảng viên");
         int birth = Integer.parseInt(scanner.nextLine());
         System.out.println("nhập giới tính giảng viên");
@@ -81,5 +116,15 @@ boolean remetrue = false ;
         String specialize = scanner.nextLine();
         Teacher teacher = new Teacher(Id,name,birth,gender,specialize);
         return teacher;
+    }
+    public static void text(){
+        Teacher teacher1 = new Teacher(1,"Nguyễn văn a",16,true,"Toán");
+        Teacher teacher2 = new Teacher(5,"Nguyễn b",16,true,"Toán");
+        Teacher teacher3 = new Teacher(4,"c",16,true,"Toán");
+        Teacher teacher4 = new Teacher(3,"Tui là d",16,true,"Toán");
+    teacherList.add(teacher1);
+    teacherList.add(teacher2);
+    teacherList.add(teacher3);
+    teacherList.add(teacher4);
     }
 }

@@ -4,14 +4,15 @@ import bt_themMvc.model.Student;
 import bt_themMvc.service.IStudentService;
 import bt_themMvc.service.studentService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class studentController {
     private static IStudentService iStudentService = new studentService();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void menuStudent() {
-        studentService.temp();
+    public static void menuStudent() throws IOException {
+//        studentService.temp();
         while (true) {
             System.out.println("-------MENU-------");
             System.out.println("chào mừng đến với chương trình codegym");

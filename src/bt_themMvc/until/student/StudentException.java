@@ -1,4 +1,4 @@
-package bt_themMvc.until;
+package bt_themMvc.until.student;
 
 public class StudentException extends Exception {
     public StudentException(String message) {

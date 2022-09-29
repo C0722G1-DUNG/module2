@@ -25,4 +25,13 @@ public class Teacher extends person{
                 super.toString()+
                 '}';
     }
+    public String getLasNameTeacher() {
+        String s = super.getName().trim();
+        if (s.indexOf(" ") > 0) {
+            int vt = s.lastIndexOf(" ");
+            return s.substring(vt + 1);
+        } else {
+            return s;
+        }
+    }
 }

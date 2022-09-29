@@ -32,12 +32,15 @@ public class Student extends person implements Comparable<Student> {
     @Override
     public String toString() {
         return "student{" +
+                super.toString() +
                 "clas='" + clas + '\'' +
                 ", score=" + score +
-                super.toString() +
+
                 '}';
     }
-
+public String getInfo(){
+        return String.format("%s,%s,%s,%s,%s,%s",this.getId(),this.getName(),this.getBirth(),this.getGender(),this.getClas(),this.getScore());
+}
     @Override
     public int compareTo(Student o) {
         if (this.getLasName().compareTo(this.getLasName()) != 0) {
@@ -51,7 +54,7 @@ public class Student extends person implements Comparable<Student> {
 
     public String getLasName() {
         String s = super.getName().trim();
-        if (s.indexOf(" ") >= 0) {
+        if (s.indexOf(" ") > 0) {
             int vt = s.lastIndexOf(" ");
             return s.substring(vt + 1);
         } else {

@@ -1,0 +1,7 @@
+1,dung,12,true,c07,10.0
+2,nam,11,true,c08,9.0
+3,nữ,9,false,c09,10.0
+5,ddd,12,true,1c123123,10.0
+10,huyyyy,14,true,co1321,10.0
+15,adasdsad,16,false,c123123,9.0
+20,nammmm,14,true,c13123,10.0

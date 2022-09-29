@@ -1,11 +1,11 @@
 package bt_themMvc.service;
 
 import bt_themMvc.model.Student;
-import bt_themMvc.until.CheckScore;
-import bt_themMvc.until.StudentException;
+import bt_themMvc.until.student.CheckScore;
+import bt_themMvc.until.student.StudentException;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,10 +14,12 @@ public class studentService implements IStudentService {
     private static List<Student> studentList = new ArrayList<>();
 
     @Override
-    public void addStudent() {
+    public void addStudent() throws IOException {
+        studentList = getStudentList();
         Student student = this.inforStudent();
         studentList.add(student);
         System.out.println("thêm mới thành công");
+        writeFile(studentList);
     }
 
     @Override
@@ -126,12 +128,38 @@ public class studentService implements IStudentService {
         return student;
     }
 
-    public static void temp (){
-     studentList.add(new Student(4,"người thích học",6,true,"c06",8));
-     studentList.add(new Student(2,"kẻ si tình",6,true,"c07",9));
-     studentList.add(new Student(7,"chuyện tay ba",6,false,"c08",10));
-     studentList.add(new Student(3," Nnguyễn văn an",6,false,"c08",10));
-     studentList.add(new Student(1,"  an",6,false,"c08",10));
-
+//    public static void temp (){
+//     studentList.add(new Student(4,"người thích học",6,true,"c06",8));
+//     studentList.add(new Student(2,"kẻ si tình",6,true,"c07",9));
+//     studentList.add(new Student(7,"chuyện tay ba",6,false,"c08",10));
+//     studentList.add(new Student(3," Nnguyễn văn an",6,false,"c08",10));
+//     studentList.add(new Student(1,"      an",6,false,"c08",10));
+//
+//    }
+    private List<Student> getStudentList() throws IOException {
+        File file =new File("src\\bt_themMvc\\data\\Student.txt");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader reader = new BufferedReader(fileReader);
+        String line ;
+        List<Student> studentList = new ArrayList<>();
+        String[] info ;
+        Student student;
+        while ((line=reader.readLine())!=null){
+            info = line.split(",");
+            student = new Student(Integer.parseInt(info[0]),info[1],Integer.parseInt(info[2]),Boolean.parseBoolean(info[3]),info[4],Double.parseDouble(info[5]));
+            studentList.add(student);
+        }
+        reader.close();
+        return studentList;
+    }
+    private void writeFile(List<Student> studentList) throws IOException {
+        File file = new File("src\\bt_themMvc\\data\\Student.txt");
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter writer = new BufferedWriter(fileWriter);
+        for (Student s : studentList){
+            writer.write(s.getInfo());
+            writer.newLine();
+        }
+        writer.close();
     }
 }

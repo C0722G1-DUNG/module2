@@ -10,6 +10,7 @@ public class teacherController {
     private static ITeacherService iTeacherService = new teacherService();
 
     public static void menuTeacher() {
+        teacherService.text();
         while (true) {
             System.out.println("-------MENU------");
             System.out.println("chào mừng đến với chương trình codegym");
@@ -17,7 +18,8 @@ public class teacherController {
             System.out.println("2 hiển thị danh sách giảng viên mới");
             System.out.println("3 xóa danh sách giảng viên mới");
             System.out.println("4 tìm kiếm giảng viên theo ID");
-            System.out.println("5 thoát");
+            System.out.println("5 sắp xếp theo tên , nếu trùng tên thì theo ID tăng dần");
+            System.out.println("6 thoát");
             int choise = Integer.parseInt(scanner.nextLine());
 
             switch (choise) {
@@ -34,7 +36,10 @@ public class teacherController {
                     iTeacherService.searchTeacher();
                     break;
                 case 5:
-                    System.exit(5);
+                    iTeacherService.sortTeacher();
+                    break;
+                case 6:
+                    System.exit(6);
                     break;
             }
         }
