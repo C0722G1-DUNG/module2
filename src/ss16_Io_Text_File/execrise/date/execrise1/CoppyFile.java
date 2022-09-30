@@ -8,7 +8,7 @@ public class CoppyFile {
     public static void main(String[] args) {
         List<Character> numberChar = new ArrayList<>();
         try {
-            File inFile = new File("src\\ss16_Io_Text_File\\execrise\\date\\source.txt");
+            File inFile = new File("src\\ss16_Io_Text_File\\execrise\\date\\source.csv.txt");
             FileReader fileReader = new FileReader(inFile);
             BufferedReader read = new BufferedReader(fileReader);
             String line ;

@@ -23,7 +23,8 @@ public class studentService implements IStudentService {
     }
 
     @Override
-    public void displayStudent() {
+    public void displayStudent() throws IOException {
+        studentList = getStudentList();
         for (Student student : studentList) {
             System.out.println(student);
         }
@@ -137,7 +138,7 @@ public class studentService implements IStudentService {
 //
 //    }
     private List<Student> getStudentList() throws IOException {
-        File file =new File("src\\bt_themMvc\\data\\Student.txt");
+        File file =new File("src\\bt_themMvc\\data\\Student.csv");
         FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         String line ;
@@ -153,7 +154,7 @@ public class studentService implements IStudentService {
         return studentList;
     }
     private void writeFile(List<Student> studentList) throws IOException {
-        File file = new File("src\\bt_themMvc\\data\\Student.txt");
+        File file = new File("src\\bt_themMvc\\data\\Student.csv");
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter writer = new BufferedWriter(fileWriter);
         for (Student s : studentList){
