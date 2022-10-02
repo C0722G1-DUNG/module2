@@ -1,10 +1,8 @@
 package bt_themMvc.service;
 
-import bt_themMvc.model.Student;
 import bt_themMvc.model.Teacher;
-import bt_themMvc.until.teacher.CheckName;
+import bt_themMvc.until.teacher.CheckTeacher;
 import bt_themMvc.until.teacher.TeacherException;
-import ss10.execrise.TestMylist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +90,7 @@ boolean remetrue = false ;
             try {
                 System.out.println("nhập tên giảng viên");
                  name = scanner.nextLine();
-                CheckName.checkName(name);
+                CheckTeacher.checkName(name);
                 break;
             }catch (TeacherException e){
                 System.out.println(e.getMessage());

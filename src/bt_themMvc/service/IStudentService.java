@@ -5,7 +5,7 @@ import java.io.IOException;
 public interface IStudentService {
     void addStudent() throws IOException;
     void displayStudent() throws IOException;
-    void remostudet();
+    void remostudet() throws IOException;
     void searchStudent();
     void sortStudent();
 }
