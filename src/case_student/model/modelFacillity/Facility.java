@@ -1,13 +1,13 @@
-package case_student.model;
+package case_student.model.modelFacillity;
 
-public abstract class ResortFurama {
+public abstract class Facility {
     private String serviceName;
     private double area;
     private double cost;
     private int maxPeople;
     private String type;
 
-    public ResortFurama() {
+    public Facility() {
     }
 
     public String getServiceName() {

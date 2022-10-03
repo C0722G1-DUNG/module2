@@ -49,9 +49,7 @@ public class studentService implements IStudentService {
                 flaDeletel = true;
                 break;
             }
-            if (!flaDeletel) {
-                System.out.println("không tìm thấy đối tượng");
-            }
+            System.out.println("không tìm thấy đối tượng");
         }
         writeFile(studentList);
     }

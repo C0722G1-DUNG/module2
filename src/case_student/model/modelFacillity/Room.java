@@ -1,6 +1,8 @@
-package case_student.model;
+package case_student.model.modelFacillity;
 
-public class Room extends ResortFurama {
+import case_student.model.modelFacillity.Facility;
+
+public class Room extends Facility {
     private String serviceFreeRoom;
 
     public Room() {

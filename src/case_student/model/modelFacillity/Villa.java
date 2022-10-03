@@ -1,6 +1,8 @@
-package case_student.model;
+package case_student.model.modelFacillity;
 
-public class Villa extends ResortFurama {
+import case_student.model.modelFacillity.Facility;
+
+public class Villa extends Facility {
     private String roomVilla;
     private int swimmingArea;
     private int floorVilla;
