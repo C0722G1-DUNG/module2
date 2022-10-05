@@ -1,18 +1,18 @@
 package case_student.model.modelPerson;
 
-public abstract class Person {
+public abstract class Person  {
     private int id;
     private String name;
     private String birth;
     private String gender;
-    private int CMND;
-    private int phone;
+    private String CMND;
+    private String phone;
     private String email;
 
     public Person() {
     }
 
-    public Person(int id, String name, String birth, String gender, int CMND, int phone, String email) {
+    public Person(int id, String name, String birth, String gender, String CMND, String phone, String email) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -54,19 +54,19 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public int getCMND() {
+    public String getCMND() {
         return CMND;
     }
 
-    public void setCMND(int CMND) {
+    public void setCMND(String CMND) {
         this.CMND = CMND;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

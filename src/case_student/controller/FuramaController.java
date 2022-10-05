@@ -3,31 +3,49 @@ package case_student.controller;
 import case_student.model.modelPerson.Employee;
 import case_student.service.ICustomerService;
 import case_student.service.IemployeeService;
+import case_student.service.IfacilityService;
 import case_student.service.impl.CustomerServiceI;
 import case_student.service.impl.EmployeeService;
+import case_student.service.impl.FacilityService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FuramaController {
     private static Scanner scanner = new Scanner(System.in);
     private static IemployeeService iemployeeService = new EmployeeService();
     private static ICustomerService iCustomerService = new CustomerServiceI();
-    public static void displayMainMenu() {
-        EmployeeService.lisTemp();
+    private static IfacilityService ifacilityService  =new FacilityService();
+
+    public static void displayMainMenu() throws IOException {
+
         boolean exitMenuParent = false;
 
         while (true) {
             exitMenuParent = false;
 
-            System.out.println("------Chào mừng bạn đến với quản lý Fumar------");
-            System.out.println("1.Quản lý nhân sự");
-            System.out.println("2.Quản lý khách hàng");
-            System.out.println("3.Quản lý cơ sở");
-            System.out.println("4.Quản lý đặt chỗ");
-            System.out.println("5.Quản lý Quảng cáo");
-            System.out.println("6.Exit");
-            System.out.println("---------------------");
-            int choise = Integer.parseInt(scanner.nextLine());
+
+            int choise;
+            while (true){
+                try {
+                    System.out.println("------Chào mừng bạn đến với quản lý Fumar------");
+                    System.out.println("1.Quản lý nhân sự");
+                    System.out.println("2.Quản lý khách hàng");
+                    System.out.println("3.Quản lý cơ sở");
+                    System.out.println("4.Quản lý đặt chỗ");
+                    System.out.println("5.Quản lý Quảng cáo");
+                    System.out.println("6.Exit");
+                    System.out.println("---------------------");
+                    System.out.println("mời bạn nhập lựa chọn của mình");
+                   choise = Integer.parseInt(scanner.nextLine());
+                   break;
+                }catch (NumberFormatException e){
+                    System.out.println("nhập sai định dạng vui lòng nhập lại");
+                }catch (Exception e){
+                    System.out.println("nhập sai định dạng vui lòng nhập lại");
+                }
+            }
+
             switch (choise) {
                 case 1:
 
@@ -98,10 +116,34 @@ public class FuramaController {
                         int choise3 = Integer.parseInt(scanner.nextLine());
                         switch (choise3) {
                             case 1:
+                                ifacilityService.DisplayListFacility();
                                 break;
                             case 2:
+                                bce:
+                                while (true) {
+                                    System.out.println("1.Thêm mới cơ sở villa");
+                                    System.out.println("2.Thêm mới cơ sở House");
+                                    System.out.println("3.Thêm mới cơ sở Room");
+                                    System.out.println("4.Trở lại menu quản lý cơ sở");
+                                    System.out.println("-----------------");
+                                    int choise7 = Integer.parseInt(scanner.nextLine());
+                                    switch (choise7) {
+                                        case 1:
+                                            ifacilityService.AddNewVilla();
+                                            break ;
+                                        case 2:
+                                            ifacilityService.AddNewHouse();
+                                        break;
+                                        case 3:
+                                            ifacilityService.AddNewRoom();
+                                            break;
+                                        case 4:
+                                            break bce;
+                                    }
+                                }
                                 break;
                             case 3:
+                                ifacilityService.DisplayListFacilityMaintenance();
                                 break;
                             case 4:
                                 break abc;

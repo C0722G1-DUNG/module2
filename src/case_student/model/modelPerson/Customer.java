@@ -6,7 +6,7 @@ public class Customer  extends Person {
 
     public Customer() {
     }
-    public Customer(int id, String name, String birth, String gender, int CMND, int phone, String email, String typeCustomer, String address) {
+    public Customer(int id, String name, String birth, String gender, String CMND, String phone, String email, String typeCustomer, String address) {
         super(id, name, birth, gender, CMND, phone, email);
         this.typeCustomer = typeCustomer;
         Address = address;
@@ -35,5 +35,8 @@ public class Customer  extends Person {
                 "typeCustomer='" + typeCustomer + '\'' +
                 ", Address='" + Address + '\'' +
                 '}';
+    }
+    public String getINfo(){
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",this.getId(),this.getName(),this.getBirth(),this.getGender(),this.getCMND(),this.getPhone(),this.getEmail(),this.getTypeCustomer(),this.getAddress());
     }
 }

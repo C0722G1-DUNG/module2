@@ -10,6 +10,14 @@ public abstract class Facility {
     public Facility() {
     }
 
+    public Facility(String serviceName, double area, double cost, int maxPeople, String type) {
+        this.serviceName = serviceName;
+        this.area = area;
+        this.cost = cost;
+        this.maxPeople = maxPeople;
+        this.type = type;
+    }
+
     public String getServiceName() {
         return serviceName;
     }
@@ -57,7 +65,6 @@ public abstract class Facility {
                 ", area=" + area +
                 ", cost=" + cost +
                 ", maxPeople=" + maxPeople +
-                ", type='" + type + '\'' +
-                '}';
+                ", type='" + type + '\'' ;
     }
 }

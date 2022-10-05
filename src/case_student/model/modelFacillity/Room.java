@@ -8,6 +8,11 @@ public class Room extends Facility {
     public Room() {
     }
 
+    public Room(String serviceName, double area, double cost, int maxPeople, String type, String serviceFreeRoom) {
+        super(serviceName, area, cost, maxPeople, type);
+        this.serviceFreeRoom = serviceFreeRoom;
+    }
+
     public Room(String serviceFreeRoom) {
         this.serviceFreeRoom = serviceFreeRoom;
     }
