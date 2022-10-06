@@ -116,7 +116,7 @@ public class FuramaController {
                         int choise3 = Integer.parseInt(scanner.nextLine());
                         switch (choise3) {
                             case 1:
-                                ifacilityService.DisplayListFacility();
+                                ifacilityService.displayListFacility();
                                 break;
                             case 2:
                                 bce:
@@ -129,13 +129,13 @@ public class FuramaController {
                                     int choise7 = Integer.parseInt(scanner.nextLine());
                                     switch (choise7) {
                                         case 1:
-                                            ifacilityService.AddNewVilla();
+                                            ifacilityService.addNewVilla();
                                             break ;
                                         case 2:
-                                            ifacilityService.AddNewHouse();
+                                            ifacilityService.addNewHouse();
                                         break;
                                         case 3:
-                                            ifacilityService.AddNewRoom();
+                                            ifacilityService.addNewRoom();
                                             break;
                                         case 4:
                                             break bce;
@@ -143,7 +143,7 @@ public class FuramaController {
                                 }
                                 break;
                             case 3:
-                                ifacilityService.DisplayListFacilityMaintenance();
+                                ifacilityService.displayListFacilityMaintenance();
                                 break;
                             case 4:
                                 break abc;

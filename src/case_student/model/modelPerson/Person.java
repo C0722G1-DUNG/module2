@@ -1,9 +1,11 @@
 package case_student.model.modelPerson;
 
+import java.time.LocalDate;
+
 public abstract class Person  {
     private int id;
     private String name;
-    private String birth;
+    private LocalDate birth;
     private String gender;
     private String CMND;
     private String phone;
@@ -12,7 +14,7 @@ public abstract class Person  {
     public Person() {
     }
 
-    public Person(int id, String name, String birth, String gender, String CMND, String phone, String email) {
+    public Person(int id, String name, LocalDate birth, String gender, String CMND, String phone, String email) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -38,11 +40,11 @@ public abstract class Person  {
         this.name = name;
     }
 
-    public String getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(LocalDate birth) {
         this.birth = birth;
     }
 
@@ -80,15 +82,14 @@ public abstract class Person  {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", birth='" + birth + '\'' +
                 ", gender='" + gender + '\'' +
                 ", CMND=" + CMND +
                 ", phone=" + phone +
-                ", email='" + email + '\'' +
-                '}';
+                ", email='" + email + '\'' ;
     }
 }
 

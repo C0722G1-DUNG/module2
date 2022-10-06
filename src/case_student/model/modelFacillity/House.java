@@ -8,13 +8,11 @@ public class House extends Facility {
 
     public House() {
     }
-
-    public House(String serviceName, double area, double cost, int maxPeople, String type, String roomHouse, int floorHouse) {
-        super(serviceName, area, cost, maxPeople, type);
+    public House(String serviceCode, String serviceName, double area, double cost, int maxPeople, String type, String roomHouse, int floorHouse) {
+        super(serviceCode, serviceName, area, cost, maxPeople, type);
         this.roomHouse = roomHouse;
         this.floorHouse = floorHouse;
     }
-
     public String getRoomHouse() {
         return roomHouse;
     }
@@ -39,4 +37,11 @@ public class House extends Facility {
                 ", floorHouse=" + floorHouse +
                 '}';
     }
+
+    @Override
+    public String getInfo() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s",this.getServiceCode(),this.getServiceName(),this.getArea(),this.getCost(),this.getMaxPeople(),this.getType(),this.getRoomHouse(),this.getFloorHouse());
+
+    }
+
 }

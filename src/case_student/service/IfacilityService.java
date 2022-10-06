@@ -1,9 +1,11 @@
 package case_student.service;
 
+import java.io.IOException;
+
 public interface IfacilityService {
-    void DisplayListFacility();
-    void AddNewHouse();
-    void AddNewRoom();
-    void AddNewVilla();
-    void DisplayListFacilityMaintenance();
+    void displayListFacility() throws IOException;
+    void addNewHouse() throws IOException;
+    void addNewRoom();
+    void addNewVilla();
+    void displayListFacilityMaintenance();
 }

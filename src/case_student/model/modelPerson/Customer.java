@@ -1,12 +1,14 @@
 package case_student.model.modelPerson;
 
+import java.time.LocalDate;
+
 public class Customer  extends Person {
  private String typeCustomer;
  private String Address;
 
     public Customer() {
     }
-    public Customer(int id, String name, String birth, String gender, String CMND, String phone, String email, String typeCustomer, String address) {
+    public Customer(int id, String name, LocalDate birth, String gender, String CMND, String phone, String email, String typeCustomer, String address) {
         super(id, name, birth, gender, CMND, phone, email);
         this.typeCustomer = typeCustomer;
         Address = address;
@@ -30,11 +32,10 @@ public class Customer  extends Person {
 
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Customer "+
                 super.toString()+
                 "typeCustomer='" + typeCustomer + '\'' +
-                ", Address='" + Address + '\'' +
-                '}';
+                ", Address='" + Address + '\'' ;
     }
     public String getINfo(){
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",this.getId(),this.getName(),this.getBirth(),this.getGender(),this.getCMND(),this.getPhone(),this.getEmail(),this.getTypeCustomer(),this.getAddress());

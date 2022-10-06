@@ -1,21 +1,29 @@
 package case_student.model.modelFacillity;
 
 public abstract class Facility {
+    private String serviceCode;
     private String serviceName;
     private double area;
     private double cost;
     private int maxPeople;
     private String type;
-
     public Facility() {
     }
-
-    public Facility(String serviceName, double area, double cost, int maxPeople, String type) {
+    public Facility(String serviceCode, String serviceName, double area, double cost, int maxPeople, String type) {
+        this.serviceCode = serviceCode;
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
         this.maxPeople = maxPeople;
         this.type = type;
+    }
+
+    public String getServiceCode() {
+        return serviceCode;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceName() {
@@ -60,11 +68,12 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return "ResortFurama{" +
-                "serviceName='" + serviceName + '\'' +
+        return "serviceCode='" + serviceCode + '\'' +
+                ", serviceName='" + serviceName + '\'' +
                 ", area=" + area +
                 ", cost=" + cost +
                 ", maxPeople=" + maxPeople +
                 ", type='" + type + '\'' ;
     }
+    public abstract String getInfo();
 }

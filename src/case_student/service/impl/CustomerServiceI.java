@@ -1,5 +1,6 @@
 package case_student.service.impl;
 
+import case_student.data.person.CheckCustomer;
 import case_student.data.person.CheckPerson;
 import case_student.data.person.PersonException;
 import case_student.model.modelPerson.Customer;
@@ -8,6 +9,9 @@ import ss10.execrise.TestMylist;
 
 import java.io.*;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +19,8 @@ import java.util.Scanner;
 
 public class CustomerServiceI implements ICustomerService {
     private static Scanner scanner = new Scanner(System.in);
-    private List<Customer> customerList = new LinkedList<>();
+    private static List<Customer> customerList = new LinkedList<>();
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Override
     public void DisplayListCustomers() throws IOException {
@@ -32,6 +37,7 @@ public class CustomerServiceI implements ICustomerService {
         customerList.add(customer);
         write(customerList);
         System.out.println("thêm mới thành công");
+        write(customerList);
     }
 
     @Override
@@ -65,10 +71,10 @@ public class CustomerServiceI implements ICustomerService {
             try {
                 System.out.println("nhập mã khách từ 1-10");
                 id = Integer.parseInt(scanner.nextLine());
-                CheckPerson.checkId(id);
+                CheckCustomer.checkId(id);
                 break;
             } catch (NumberFormatException | PersonException e) {
-                System.out.println("vui lòng nhập lại name đang sai định dạng");
+                System.out.println("vui lòng nhập lại ID đang sai định dạng");
             }
         }
         String name;
@@ -76,14 +82,23 @@ public class CustomerServiceI implements ICustomerService {
             try {
                 System.out.println("nhập tên khách");
                 name = scanner.nextLine();
-                CheckPerson.checkName(name);
+                CheckCustomer.checkName(name);
                 break;
             } catch (PersonException e) {
                 System.out.println("vui lòng nhập lại name đang sai định dạng");
             }
         }
-        System.out.println("nhập ngày sinh của khách");
-        String birth = scanner.nextLine();
+        LocalDate birth;
+        while (true){
+            try {
+                System.out.println("nhập ngày sinh của khách theo định dạng(dd/MM/yyyy)");
+                 birth = LocalDate.parse(scanner.nextLine(),dateTimeFormatter);
+                 CheckCustomer.checkBirth(birth);
+                 break;
+            } catch (PersonException| DateTimeParseException e) {
+                System.out.println("vui lòng nhập lại ngày sinh đang sai định dạng");
+            }
+        }
         String gender = null;
         while (true) {
             try {
@@ -122,10 +137,10 @@ public class CustomerServiceI implements ICustomerService {
             try {
                 System.out.println("nhập số CMND của nhân viên(vui lòng nhập đủ 9 số");
                 CMND = scanner.nextLine();
-                CheckPerson.checkCMND(CMND);
+                CheckCustomer.checkCMND(CMND);
                 break;
             } catch (PersonException e) {
-                System.out.println("vui lòng nhập lại name đang sai định dạng");
+                System.out.println("vui lòng nhập lại CMND đang sai định dạng");
             }
         }
         String phone;
@@ -133,10 +148,10 @@ public class CustomerServiceI implements ICustomerService {
             try {
                 System.out.println("nhập số điện thoại của khách(Bắt đầu từ 0 ,và có tổng cộng 10 số)");
                 phone = scanner.nextLine();
-                CheckPerson.checkPhone(phone);
+                CheckCustomer.checkPhone(phone);
                 break;
             } catch (PersonException e) {
-                System.out.println("vui lòng nhập lại name đang sai định dạng");
+                System.out.println("vui lòng nhập lại  đang sai định dạng");
             }
         }
         String email;
@@ -144,10 +159,10 @@ public class CustomerServiceI implements ICustomerService {
             try {
                 System.out.println("nhập email của khách");
                 email = scanner.nextLine();
-                CheckPerson.checkEmail(email);
+                CheckCustomer.checkEmail(email);
                 break;
             } catch (PersonException e) {
-                System.out.println("vui lòng nhập lại name đang sai định dạng");
+                System.out.println("vui lòng nhập lại email đang sai định dạng");
             }
         }
         String typeCustomer = null;
@@ -188,33 +203,51 @@ public class CustomerServiceI implements ICustomerService {
                 e.printStackTrace();
             }
         }
-        System.out.println("nhập vào địa chỉ của khách");
-        String address = scanner.nextLine();
+        String address;
+        while (true) {
+            try {
+                System.out.println("nhập vào địa chỉ của khách");
+                address = scanner.nextLine();
+                CheckCustomer.checkAddress(address);
+                break;
+            } catch (PersonException e) {
+                System.out.println("vui lòng nhập lại địa chỉ đang sai định dạng");
+            }
+        }
         Customer customer = new Customer(id, name, birth, gender, CMND, phone, email, typeCustomer, address);
         return customer;
     }
 
-    public static List<Customer> readFile() throws IOException {
-        File file = new File("src\\case_student\\until\\customer.csv");
-        List<Customer> customers = new ArrayList<>();
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String lean;
-        String[] info;
-        Customer customer;
-        while ((lean = bufferedReader.readLine()) != null) {
-            info = lean.split(",");
-            customer = new Customer(Integer.parseInt(info[0]), info[1], info[2], info[3], info[4], info[5], info[6], info[7], info[8]);
-            customers.add(customer);
+    private List<Customer> readFile() throws IOException {
+        BufferedReader bufferedReader =null;
+        List<Customer> customerList = new ArrayList<>();
+        try {
+            File file = new File("src\\case_student\\until\\customer.csv");
+            FileReader fileReader = new FileReader(file);
+             bufferedReader = new BufferedReader(fileReader);
+            String lean;
+            String[] info;
+            Customer customer;
+            while ((lean = bufferedReader.readLine()) != null) {
+                info = lean.split(",");
+                customer = new Customer(Integer.parseInt(info[0]), info[1], LocalDate.parse(info[2]), info[3], info[4], info[5], info[6], info[7], info[8]);
+                customerList.add(customer);
+            }
+
+        } catch (IOException|NumberFormatException e) {
+            System.out.println(e.getMessage());
         }
-        bufferedReader.close();
-        return customers;
+        if (bufferedReader!=null){
+            bufferedReader.close();
+        }
+          return customerList;
     }
-    public static void write(List<Customer> customers) throws IOException {
+
+    private  void write(List<Customer> customers) throws IOException {
         File file = new File("src\\case_student\\until\\customer.csv");
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        for (Customer c:customers) {
+        for (Customer c : customers) {
             bufferedWriter.write(c.getINfo());
             bufferedWriter.newLine();
         }
